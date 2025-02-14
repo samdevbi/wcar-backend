@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/avto-shop/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/avto-shop/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/avto-shop",
+  "projects": {
+    "avto-shop": {
+      "type": "application",
+      "root": "apps/avto-shop",
+      "entryFile": "main",
+      "sourceRoot": "apps/avto-shop/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/avto-shop/tsconfig.app.json"
+      }
+    },
+    "avto-shop-batch": {
+      "type": "application",
+      "root": "apps/avto-shop-batch",
+      "entryFile": "main",
+      "sourceRoot": "apps/avto-shop-batch/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/avto-shop-batch/tsconfig.app.json"
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ services:
 
   wcar-batch: 
     container_name: wcar-batch
-    restart: always
+    restart: unless-stopped
     image: node:20.18.1
     ports: 
       - 3021:3011

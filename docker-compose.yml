@@ -1,0 +1,38 @@
+version: "3.3"
+
+services: 
+  wcar-api: 
+    container_name: wcar-api
+    restart: always
+    image: node:20.18.1
+    ports: 
+      - 3020:3010
+    volumes: 
+      - ./:/user/src/wcar
+    working_dir: /user/src/wcar
+
+    networks: 
+      - monorepo-network
+    
+    command: bash -c "npm install && npm run build && npm run start:prod"
+
+
+  wcar-batch: 
+    container_name: wcar-batch
+    restart: always
+    image: node:20.18.1
+    ports: 
+      - 3021:3011
+    volumes: 
+      - ./:/user/src/wcar
+    working_dir: /user/src/wcar
+
+    networks: 
+      - monorepo-network
+    
+    command: bash -c "npm install && npm run build && npm run start:prod:batch"
+
+
+networks: 
+  monorepo-network:
+    driver: bridge

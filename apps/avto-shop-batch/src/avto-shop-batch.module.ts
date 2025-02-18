@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AvtoShopBatchController } from './avto-shop-batch.controller';
-import { AvtoShopBatchService } from './avto-shop-batch.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { MongooseModule } from '@nestjs/mongoose';
 import CarSchema from 'apps/avto-shop/src/schemas/Car.model';
 import MemberSchema from 'apps/avto-shop/src/schemas/Member.model';
+import { AvtoShopBatchService } from './avto-shop-batch.service';
+import { AvtoShopBatchController } from './avto-shop-batch.controller';
 
 @Module({
   imports: [ConfigModule.forRoot(),

@@ -1,11 +1,12 @@
 import { Controller, Get, Logger } from '@nestjs/common';
-import { Cron, Interval, Timeout } from '@nestjs/schedule';
-import { BATCH_TOP_AGENTS, BATCH_TOP_PROPERTIES, BATCH_TOP_ROLLBACK } from './lib/config';
+import { Cron, Timeout } from '@nestjs/schedule';
+import { BATCH_TOP_AGENTS, BATCH_TOP_CARS, BATCH_TOP_ROLLBACK } from './lib/config';
+import { AvtoShopBatchService } from './avto-shop-batch.service';
 
 @Controller()
 export class AvtoShopBatchController {
   private logger: Logger = new Logger('AvtoShopBatchController');
-  constructor(private readonly batchService: AvtoShopBatchController) { }
+  constructor(private readonly batchService: AvtoShopBatchService) { }
 
   @Get()
   getHello(): string {
@@ -28,10 +29,10 @@ export class AvtoShopBatchController {
     }
   }
 
-  @Cron('20 00 01 * * *', { name: BATCH_TOP_PROPERTIES })
+  @Cron('20 00 01 * * *', { name: BATCH_TOP_CARS })
   public async batchTopCar() {
     try {
-      this.logger['context'] = BATCH_TOP_PROPERTIES;
+      this.logger['context'] = BATCH_TOP_CARS;
       this.logger.debug('Ecxecuted');
       await this.batchService.batchTopCar();
     } catch (err) {

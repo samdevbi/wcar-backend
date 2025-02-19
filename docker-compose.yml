@@ -1,5 +1,3 @@
-version: "3.3"
-
 services: 
   wcar-api: 
     container_name: wcar-api

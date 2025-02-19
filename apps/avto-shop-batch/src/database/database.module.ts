@@ -6,7 +6,7 @@ import { Connection } from 'mongoose';
     imports: [
         MongooseModule.forRootAsync({
             useFactory: () => ({
-                uri: process.env.ENV === 'production' ? process.env.MONGO_PRODUCTION : process.env.MONGO_DEVELOPMENT,
+                uri: process.env.NODE_ENV === 'production' ? process.env.MONGO_PRODUCTION : process.env.MONGO_DEVELOPMENT,
             }),
         }),
     ],
@@ -16,7 +16,7 @@ export class DatabaseModule {
     constructor(@InjectConnection() private readonly connection: Connection) {
         if (connection.readyState === 1) {
             console.log(
-                `MongoDB is successfully connected into ${process.env.ENV === 'production' ? 'production' : 'development'} db`
+                `MongoDB is successfully connected into ${process.env.NODE_ENV === 'production' ? 'production' : 'development'} db`
             );
         } else {
             console.log('MongoDB is not connected!');

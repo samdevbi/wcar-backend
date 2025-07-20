@@ -1,13 +1,13 @@
 services: 
-  wcar-api: 
-    container_name: wcar-api
+  carselon: 
+    container_name: carselon
     restart: always
     image: node:20.18.1
     ports: 
-      - 3020:3010
+      - 4000:4444
     volumes: 
-      - ./:/user/src/wcar
-    working_dir: /user/src/wcar
+      - ./:/user/src/carselon
+    working_dir: /user/src/carselon
 
     networks: 
       - monorepo-network
@@ -15,15 +15,15 @@ services:
     command: bash -c "rm -rf dist && npm install && npm run build && npm run start:prod"
 
 
-  wcar-batch: 
-    container_name: wcar-batch
+  carselon-batch: 
+    container_name: carselon-batch
     restart: unless-stopped
     image: node:20.18.1
     ports: 
-      - 3021:3011
+      - 2000:2222
     volumes: 
-      - ./:/user/src/wcar
-    working_dir: /user/src/wcar
+      - ./:/user/src/carselon
+    working_dir: /user/src/carselon
 
     networks: 
       - monorepo-network
